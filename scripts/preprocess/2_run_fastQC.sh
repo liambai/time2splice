@@ -22,6 +22,9 @@ mkdir -p $OUTDIR
 # Move into directory and create fastQC script
 
 find $INDIR -type f -name "*.fastq*"> $INDIR/file.txt # grab all .fastq.gz files in DIR
+
+cat $INDIR/file.txt
+
 sed -i "1d" $INDIR/file.txt # remove dir itself from file.txt
 sed -i "$ d" $INDIR/file.txt # remove "file.txt" from file.txt
 sed -i "1 i\--outdir=$OUTDIR :::" $INDIR/file.txt
