@@ -31,6 +31,8 @@ sed -i "1 i\--outdir=$OUTDIR :::" $INDIR/file.txt
 sed -i '1 i\fastqc {1}\n' $INDIR/file.txt  
 sed -i "1 i\parallel -j $NUM_THREADS" $INDIR/file.txt
 
+cat $INDIR/file.txt
+
 echo $INDIR/file.txt
 tr '\n' ' ' < $INDIR/file.txt > $OUTDIR/commands_fastqc.txt # replace new line with space
 rm -rf $INDIR/file.txt
