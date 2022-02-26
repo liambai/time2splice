@@ -5,7 +5,7 @@
 # Runs trim Galore THEN FastQC in for all .fastq.gz files in a given directory
 
 # Check to make sure input is correct
-if [ $# -ne 5 ]; then
+if [ $# -ne 4 ]; then
 	echo $0: "Usage: ./run_trim_Galore.sh 
 		1) NUM_COMMANDS 
 		2) /PATH/TO/DIR/ (with 2 subdirs (SAMPLE_NAME/REP_NAME/fastq.gz)) 
