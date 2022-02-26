@@ -11,6 +11,8 @@ conda activate time2splice_env
 DATADIR=$1
 OUTDIR=$2
 
+rm -r ${OUTDIR}
+
 PREPROCESS_RES_DIR=${OUTDIR}/time2splice/results/preprocess
 
 python3 ./preprocess/1_create_folder_structure.py ${OUTDIR}
