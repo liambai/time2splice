@@ -10,8 +10,7 @@ if [ $# -ne 5 ]; then
 		1) NUM_COMMANDS 
 		2) /PATH/TO/DIR/ (with 2 subdirs (SAMPLE_NAME/REP_NAME/fastq.gz)) 
 		3) /PATH/TO/OUTPUT_DIR/ (suggest placing in /time2splice/results/trim_galore_fastqc) 
-		4) Q_SCORE (recommend 30) 
-		5) PATH_TO_CUTADAPT (e.g. /time2splice_env/bin/cutadapt)" 
+		4) Q_SCORE (recommend 30)" 
 	exit 1
 fi
 
@@ -20,7 +19,6 @@ NUM_COMMANDS=$1
 INDIR=$2
 OUTDIR=$3
 Q_SCORE=$4
-PATH_CUTADAPT=$5
 
 #Make output directory if necessary
 mkdir -p $OUTDIR
@@ -63,7 +61,7 @@ for R1 in ${INDIR}/*/*/*_R1_*.fastq*
         # output directory for BOWTIE2/sample_name
         #mkdir -p ${folderName}
                     
-        echo "(trim_galore -q ${Q_SCORE} --phred33 --gzip --fastqc --paired --retain_unpaired --path_to_cutadapt ${PATH_CUTADAPT} --output_dir ${folderName} ${R1} ${R2}) &">> $COMMAND_SCRIPT
+        echo "(trim_galore -q ${Q_SCORE} --phred33 --gzip --fastqc --paired --retain_unpaired --output_dir ${folderName} ${R1} ${R2}) &">> $COMMAND_SCRIPT
         
 done
 bash $COMMAND_SCRIPT      

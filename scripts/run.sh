@@ -11,6 +11,8 @@ conda activate time2splice_env
 DATADIR=$1
 OUTDIR=$2
 
+PREPROCESS_RES_DIR=${OUTDIR}/time2splice/results/preprocess
+
 python3 ./preprocess/1_create_folder_structure.py ${OUTDIR}
-./preprocess/2_run_fastQC.sh 1 ${DATADIR} ${OUTDIR}/time2splice/results/preprocess/fastqc
-# ./3_run_trim_galore.sh 1 
+./preprocess/2_run_fastQC.sh 1 ${DATADIR} ${PREPROCESS_RES_DIR}/fastqc
+./preprocess/3_run_trim_galore.sh 1 ${DATADIR} ${PREPROCESS_RES_DIR}/trim_galore_fastqc 30
