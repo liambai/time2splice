@@ -37,7 +37,7 @@ i=$START
 
 # Iterate through only the R1 replicates and match the second replicate
 echo "Initiating paired-end RNA-seq data processing.";
-for R1 in ${INDIR}/*/*/*_R1_*.fastq* 
+for R1 in ${INDIR}/*_R1_*.fastq* 
     do
         echo "Getting paired .fastq for $R1"
         # iterate through each R1 to determine when to add 'wait' to script
