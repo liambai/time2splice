@@ -54,23 +54,16 @@ for R1 in ${INDIR}/*_R1_*.fastq*
         fileName=$(echo `basename $R1`) # get filename from .fq.gz
         fileParent=$(echo `basename $(dirname $R1)`)
 
-        echo "fileName" 
-        echo ${fileName}
-
-        echo "fileParent" 
-        echo ${fileParent}
-
         # create folder for all ooutputs per file by removing R1 and R2 (e.g. MTb8-8)
         #fName=$(echo ${fileName%$SUFFIX_TO_REMOVE}) 
         folderName=${OUTDIR}/${fileParent}/ #"/"${fileName}
 
-        echo "foldername" 
-        echo ${folderName}
-
         # output directory for BOWTIE2/sample_name
         #mkdir -p ${folderName}
                     
-        echo "(trim_galore -q ${Q_SCORE} --phred33 --gzip --fastqc --paired --retain_unpaired --output_dir ${folderName} ${R1} ${R2}) &">> $COMMAND_SCRIPT
+        echo "trim_galore -q ${Q_SCORE} --phred33 --gzip --fastqc --paired --retain_unpaired --output_dir ${folderName} ${R1} ${R2}" >> $COMMAND_SCRIPT
         
 done
+echo "running command script"
 bash $COMMAND_SCRIPT      
+echo "done"
