@@ -2,7 +2,7 @@
 
 #SBATCH -n 1
 #SBATCH --mem=16G
-#SBATCH -t 1:00:00
+#SBATCH -t 4:00:00
 
 module load anaconda/2020.02
 source /gpfs/runtime/opt/anaconda/2020.02/etc/profile.d/conda.sh

@@ -154,5 +154,6 @@ for dir in $INPUT_DIR
 done
 echo "wait" >> $COMMAND_SCRIPT
 
-# Running command_script (.txt file saved in $RESULTS/_DIR)
+echo "running command script"
 bash $COMMAND_SCRIPT
+echo "done"
