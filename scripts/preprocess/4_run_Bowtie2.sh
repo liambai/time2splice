@@ -10,7 +10,7 @@ if [ $# -ne 5 ]; then
             1) /PATH/TO/NAMED_FASTQ_DIR/ (NAMED folders containing replicate fastq.gz files) 
             2) /PATH/TO/RESULTS_DIR/ (desired location to add or create results directory) 
             3) PAIRED_OR_NOT (YES is 1, NO is 0) 
-            4) INDEX_DIR
+            4) INDEX_DIR"
 	exit 1
 fi
 
@@ -19,6 +19,7 @@ INPUT_DIR=$1
 RESULTS_DIR=$2
 PAIRED_OR_NOT=$3
 INDEX_DIR=$4
+ORGANISM=$5
 
 # Checking to see if results directory exists
 if [ -d "$RESULTS_DIR" ]; then
