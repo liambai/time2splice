@@ -147,7 +147,7 @@ for dir in $INPUT_DIR
                     # Writing Bowtie2 command to a file, followed by .bam creation and sorting
                     echo "Adding ${fileName} to run_Bowtie2.txt script"
                     echo " "
-                    echo "bowtie2 -p ${NUM_PROCESSORS} -x ${INDEX} -1 $R1 -2 $R2 --un-conc-gz $RESULTS_DIR/out_unconc.sam.gz --al-conc-gz $folderName/out_al-conc.sam.gz --met-file $folderName/out_met-file.tsv -S $folderName/out.sam 2> $folderName/summaryfile.txt; samtools view -bS $folderName/out.sam > $folderName/out.bam; rm -rf $folderName/out.sam; samtools sort $folderName/out.bam -o $folderName/out.sorted.bam; rm -rf $folderName/out.bam" >> $COMMAND_SCRIPT  
+                    echo "bowtie2 -p ${NUM_PROCESSORS} -x ${INDEX} -1 $R1 -2 $R2 --un-conc-gz $folderName/out_unconc.sam.gz --al-conc-gz $folderName/out_al-conc.sam.gz --met-file $folderName/out_met-file.tsv -S $folderName/out.sam 2> $folderName/summaryfile.txt; samtools view -bS $folderName/out.sam > $folderName/out.bam; rm -rf $folderName/out.sam; samtools sort $folderName/out.bam -o $folderName/out.sorted.bam; rm -rf $folderName/out.bam" >> $COMMAND_SCRIPT  
             done
        fi
     fi
