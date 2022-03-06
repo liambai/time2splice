@@ -10,7 +10,7 @@ if [ $# -ne 4 ]; then
             1) /PATH/TO/NAMED_FASTQ_DIR/ (NAMED folders containing replicate fastq.gz files) 
             2) /PATH/TO/RESULTS_DIR/ (desired location to add or create results directory) 
             3) PAIRED_OR_NOT (YES is 1, NO is 0) 
-            4) INDEX_DIR"
+            4) INDEX"
 	exit 1
 fi
 
@@ -18,7 +18,7 @@ fi
 INPUT_DIR=$1
 RESULTS_DIR=$2
 PAIRED_OR_NOT=$3
-INDEX_DIR=$4
+INDEX=$4
 ORGANISM=$5
 
 # Checking to see if results directory exists
@@ -110,7 +110,7 @@ for dir in $INPUT_DIR
                     # Writing Bowtie2 command to a file, followed by .bam creation and sorting
                     echo "Adding ${fileName} to run_Bowtie2.txt script"
                     echo " "                    
-                    echo "bowtie2 -p ${NUM_PROCESSORS} -x ${INDEX_DIR} -U $fastq --un-gz $folderName/out_un.sam.gz --al-gz $folderName/out_al.sam.gz --met-file $folderName/out_met-file.tsv -S $folderName/out.sam 2> $folderName/summaryfile.txt; samtools view -bS $folderName/out.sam > $folderName/out.bam; rm -rf $folderName/out.sam; samtools sort $folderName/out.bam -o $folderName/out.sorted.bam; rm -rf $folderName/out.bam" >> $COMMAND_SCRIPT  
+                    echo "bowtie2 -p ${NUM_PROCESSORS} -x ${INDEX} -U $fastq --un-gz $folderName/out_un.sam.gz --al-gz $folderName/out_al.sam.gz --met-file $folderName/out_met-file.tsv -S $folderName/out.sam 2> $folderName/summaryfile.txt; samtools view -bS $folderName/out.sam > $folderName/out.bam; rm -rf $folderName/out.sam; samtools sort $folderName/out.bam -o $folderName/out.sorted.bam; rm -rf $folderName/out.bam" >> $COMMAND_SCRIPT  
 
                     echo "Outputting results to $folderName"
            done
@@ -147,7 +147,7 @@ for dir in $INPUT_DIR
                     # Writing Bowtie2 command to a file, followed by .bam creation and sorting
                     echo "Adding ${fileName} to run_Bowtie2.txt script"
                     echo " "
-                    echo "bowtie2 -p ${NUM_PROCESSORS} -x ${INDEX_DIR} -1 $R1 -2 $R2 --un-conc-gz $RESULTS_DIR/out_unconc.sam.gz --al-conc-gz $folderName/out_al-conc.sam.gz --met-file $folderName/out_met-file.tsv -S $folderName/out.sam 2> $folderName/summaryfile.txt; samtools view -bS $folderName/out.sam > $folderName/out.bam; rm -rf $folderName/out.sam; samtools sort $folderName/out.bam -o $folderName/out.sorted.bam; rm -rf $folderName/out.bam" >> $COMMAND_SCRIPT  
+                    echo "bowtie2 -p ${NUM_PROCESSORS} -x ${INDEX} -1 $R1 -2 $R2 --un-conc-gz $RESULTS_DIR/out_unconc.sam.gz --al-conc-gz $folderName/out_al-conc.sam.gz --met-file $folderName/out_met-file.tsv -S $folderName/out.sam 2> $folderName/summaryfile.txt; samtools view -bS $folderName/out.sam > $folderName/out.bam; rm -rf $folderName/out.sam; samtools sort $folderName/out.bam -o $folderName/out.sorted.bam; rm -rf $folderName/out.bam" >> $COMMAND_SCRIPT  
             done
        fi
     fi
