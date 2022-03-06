@@ -5,7 +5,7 @@
 # Runs Bowtie2 in for all .fastq.gz files in a given directory
 
 # Checking to make sure input is correct
-if [ $# -ne 5 ]; then
+if [ $# -ne 4 ]; then
 	echo $0: "Usage: ./run_Bowtie2.sh 
             1) /PATH/TO/NAMED_FASTQ_DIR/ (NAMED folders containing replicate fastq.gz files) 
             2) /PATH/TO/RESULTS_DIR/ (desired location to add or create results directory) 
