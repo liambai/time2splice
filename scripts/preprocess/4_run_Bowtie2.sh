@@ -135,8 +135,8 @@ for dir in $INPUT_DIR
                     fileParent=$(echo `basename $(dirname $R1)`)
 
                     # Creating folder for all Bowtie2 outputs per file by removing R1 and R2 (e.g. MTb8-8)
-                    fName=$(echo ${fileName%$SUFIX_TO_REMOVE}) 
-                    folderName=${RESULTS_DIR}${fileParent}"/"${fName}
+                    fName=$(echo ${fileName%".fastq.gz"}) 
+                    folderName=${RESULTS_DIR}"/"${fName}
 
                     # Getting 2nd read pair
                     R2=${R1//R1/R2}
@@ -147,7 +147,7 @@ for dir in $INPUT_DIR
                     # Writing Bowtie2 command to a file, followed by .bam creation and sorting
                     echo "Adding ${fileName} to run_Bowtie2.txt script"
                     echo " "
-                    echo "bowtie2 -p ${NUM_PROCESSORS} -x ${INDEX_DIR} -1 $R1 -2 $R2 --un-conc-gz $folderName/out_unconc.sam.gz --al-conc-gz $folderName/out_al-conc.sam.gz --met-file $folderName/out_met-file.tsv -S $folderName/out.sam 2> $folderName/summaryfile.txt; samtools view -bS $folderName/out.sam > $folderName/out.bam; rm -rf $folderName/out.sam; samtools sort $folderName/out.bam -o $folderName/out.sorted.bam; rm -rf $folderName/out.bam" >> $COMMAND_SCRIPT  
+                    echo "bowtie2 -p ${NUM_PROCESSORS} -x ${INDEX_DIR} -1 $R1 -2 $R2 --un-conc-gz $RESULTS_DIR/out_unconc.sam.gz --al-conc-gz $folderName/out_al-conc.sam.gz --met-file $folderName/out_met-file.tsv -S $folderName/out.sam 2> $folderName/summaryfile.txt; samtools view -bS $folderName/out.sam > $folderName/out.bam; rm -rf $folderName/out.sam; samtools sort $folderName/out.bam -o $folderName/out.sorted.bam; rm -rf $folderName/out.bam" >> $COMMAND_SCRIPT  
             done
        fi
     fi
