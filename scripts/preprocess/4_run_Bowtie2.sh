@@ -148,8 +148,6 @@ for dir in $INPUT_DIR
                     echo "Adding ${fileName} to run_Bowtie2.txt script"
                     echo " "
                     echo "bowtie2 -p ${NUM_PROCESSORS} -x ${INDEX_DIR} -1 $R1 -2 $R2 --un-conc-gz $folderName/out_unconc.sam.gz --al-conc-gz $folderName/out_al-conc.sam.gz --met-file $folderName/out_met-file.tsv -S $folderName/out.sam 2> $folderName/summaryfile.txt; samtools view -bS $folderName/out.sam > $folderName/out.bam; rm -rf $folderName/out.sam; samtools sort $folderName/out.bam -o $folderName/out.sorted.bam; rm -rf $folderName/out.bam" >> $COMMAND_SCRIPT  
-
-
             done
        fi
     fi
@@ -157,4 +155,4 @@ done
 echo "wait" >> $COMMAND_SCRIPT
 
 # Running command_script (.txt file saved in $RESULTS/_DIR)
-echo $COMMAND_SCRIPT
+bash $COMMAND_SCRIPT
