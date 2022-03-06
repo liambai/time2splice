@@ -78,10 +78,8 @@ i=$START
 
 echo "Processing .fastq files with Bowtie2 on $NUM_PROCESSORS processors."
 # Adding commands to a script.txt file
-for dir in $INPUT_DIR/*/*
+for dir in $INPUT_DIR
     do
-    echo " "
-    echo "Subdir:" ${dir}
     
     # Iterating through input directory
     if [ -d ${dir} ] ; then
