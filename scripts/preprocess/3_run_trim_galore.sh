@@ -37,7 +37,7 @@ i=$START
 
 # Iterate through only the R1 replicates and match the second replicate
 echo "Initiating paired-end RNA-seq data processing.";
-for R1 in ${INDIR}/*_R1_*.fastq* 
+for R1 in ${INDIR}/*/*_R1_*.fastq* 
     do
         echo "Getting paired .fastq for $R1"
         # iterate through each R1 to determine when to add 'wait' to script
@@ -57,6 +57,8 @@ for R1 in ${INDIR}/*_R1_*.fastq*
         # create folder for all ooutputs per file by removing R1 and R2 (e.g. MTb8-8)
         #fName=$(echo ${fileName%$SUFFIX_TO_REMOVE}) 
         folderName=${OUTDIR}/${fileParent}/ #"/"${fileName}
+        echo "folderName"
+        echo $folderName
 
         # output directory for BOWTIE2/sample_name
         #mkdir -p ${folderName}
