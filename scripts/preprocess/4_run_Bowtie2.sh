@@ -118,6 +118,7 @@ for dir in $INPUT_DIR
         # PAIRED END READS
         else
             echo "Initiating paired-end RNA-seq data processing.";
+            echo ${dir}
             # Iterating through only the R1 replicates
             for R1 in ${dir}/*_R1_*.fq*
                 do
