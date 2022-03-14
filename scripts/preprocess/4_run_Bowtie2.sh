@@ -2,7 +2,7 @@
 # run_Bowtie2.sh
 # Ashley Mae Conard
 # Last Mod: July 11, 2019
-# Runs Bowtie2 in for all .fastq.gz files in a given directory
+# Runs Bowtie2 in for all .fq.gz files in a given directory
 
 # Checking to make sure input is correct
 if [ $# -ne 4 ]; then
@@ -28,9 +28,9 @@ else
     mkdir $RESULTS_DIR
 fi
 
-# Getting number of fastq files
-num_files=$(echo `ls -1q ${INPUT_DIR}/*/*/*.fastq* | wc -l`)
-echo "Number of input files: " $num_files
+# # Getting number of fastq files
+# num_files=$(echo `ls -1q ${INPUT_DIR}/*/*/*.fastq* | wc -l`)
+# echo "Number of input files: " $num_files
 
 # Determining how many processors and commands to run in one batch
 #if [ $((num_files%2)) -eq 0 ]; then # number is even
@@ -76,7 +76,7 @@ fi
 START=0
 i=$START
 
-echo "Processing .fastq files with Bowtie2 on $NUM_PROCESSORS processors."
+echo "Processing .fq files with Bowtie2 on $NUM_PROCESSORS processors."
 # Adding commands to a script.txt file
 for dir in $INPUT_DIR
     do
@@ -90,13 +90,13 @@ for dir in $INPUT_DIR
            echo "Initiating single-end RNA-seq data processing.";
            for fastq in ${dir}/*
                do
-                   echo "Getting unpaired .fastq for $fastq"
+                   echo "Getting unpaired .fq for $fastq"
                    ((i = i + 1))
 
-                    # If number of processors reached, add wait to form a batch that will finish, and then process the next batch
-                    if (( ${i}%${num_files}==0 )); then # had been NUM_COMMANDS
-                        echo "wait" >> $COMMAND_SCRIPT
-                    fi 
+                    # # If number of processors reached, add wait to form a batch that will finish, and then process the next batch
+                    # if (( ${i}%${num_files}==0 )); then # had been NUM_COMMANDS
+                    #     echo "wait" >> $COMMAND_SCRIPT
+                    # fi 
                     fileName=$(echo `basename $fastq`) # get filename from .fq.gz
                     replicateFolder=$(echo `basename $(dirname $fastq)`)
                     sampleFolder=$(echo `basename $(dirname $(dirname $fastq))`)
@@ -121,21 +121,21 @@ for dir in $INPUT_DIR
             # Iterating through only the R1 replicates
             for R1 in ${dir}/*R1*
                 do
-                    echo "Getting paired .fastq for $R1"
+                    echo "Getting paired .fq for $R1"
                     # Iterating through each R1 to determine when to add 'wait' to script
                     ((i = i + 1))
 
-                    # if number of processors reached, add wait to form a batch that will finish, and then process the next batch
-                    if (( ${i}%${num_files}==0 )); then # had been NUM_COMMANDS
-                        echo "wait" >> $COMMAND_SCRIPT
-                    fi 
+                    # # if number of processors reached, add wait to form a batch that will finish, and then process the next batch
+                    # if (( ${i}%${num_files}==0 )); then # had been NUM_COMMANDS
+                    #     echo "wait" >> $COMMAND_SCRIPT
+                    # fi 
 
                     # Generating the Bowtie2 command for the next R1 and R2
                     fileName=$(echo `basename $R1`) # get filename from .fq.gz
                     fileParent=$(echo `basename $(dirname $R1)`)
 
                     # Creating folder for all Bowtie2 outputs per file by removing R1 and R2 (e.g. MTb8-8)
-                    fName=$(echo ${fileName%".fastq.gz"}) 
+                    fName=$(echo ${fileName%".fq.gz"}) 
                     folderName=${RESULTS_DIR}"/"${fName}
 
                     # Getting 2nd read pair

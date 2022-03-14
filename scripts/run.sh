@@ -15,7 +15,7 @@ OUTDIR=$2
 
 PREPROCESS_RES_DIR=${OUTDIR}/time2splice/results/preprocess
 
-python3 ./preprocess/1_create_folder_structure.py ${OUTDIR}
+# python3 ./preprocess/1_create_folder_structure.py ${OUTDIR}
 # ./preprocess/2_run_fastQC.sh 4 ${DATADIR}/fastq ${PREPROCESS_RES_DIR}/fastqc
 # ./preprocess/3_run_trim_galore.sh 4 ${DATADIR}/fastq ${PREPROCESS_RES_DIR}/trim_galore_fastqc 30
-./preprocess/4_run_Bowtie2.sh ${DATADIR}/fastq ${PREPROCESS_RES_DIR}/alignment 1 ${DATADIR}/reference/index/dmel_all_chromosome
+./preprocess/4_run_Bowtie2.sh ${PREPROCESS_RES_DIR}/trim_galore_fastqc ${PREPROCESS_RES_DIR}/alignment 1 ${DATADIR}/reference/index/dmel_all_chromosome
