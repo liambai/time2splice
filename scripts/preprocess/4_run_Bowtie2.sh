@@ -119,7 +119,7 @@ for dir in $INPUT_DIR
         else
             echo "Initiating paired-end RNA-seq data processing.";
             # Iterating through only the R1 replicates
-            for R1 in ${dir}/*R1*
+            for R1 in ${dir}/*_R1_*.fq*
                 do
                     echo "Getting paired .fq for $R1"
                     # Iterating through each R1 to determine when to add 'wait' to script
