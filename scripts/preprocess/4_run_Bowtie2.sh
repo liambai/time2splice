@@ -119,7 +119,7 @@ for dir in $INPUT_DIR
         else
             echo "Initiating paired-end RNA-seq data processing.";
             # Iterating through only the R1 replicates
-            for R1 in ${dir}/*/*_R1_*.fq*
+            for R1 in ${dir}/*/*_R1_*_val_*.fq*
                 do
                     echo "Getting paired .fq for $R1"
                     # Iterating through each R1 to determine when to add 'wait' to script
@@ -135,11 +135,13 @@ for dir in $INPUT_DIR
                     fileParent=$(echo `basename $(dirname $R1)`)
 
                     # Creating folder for all Bowtie2 outputs per file by removing R1 and R2 (e.g. MTb8-8)
-                    fName=$(echo ${fileName%".fq.gz"}) 
+                    fName=$(echo ${fileName%"_val_*"}) 
                     folderName=${RESULTS_DIR}"/"${fName}
 
                     # Getting 2nd read pair
                     R2=${R1//R1/R2}
+                    R2=${R2//"_val_1"/"_val_2"}
+                    echo "R2: $R2"
 
                     # Outputting directory for Bowtie2/sample_name
                     mkdir -p ${folderName}
