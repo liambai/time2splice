@@ -29,7 +29,7 @@ cat $INDIR/file.txt
 #sed -i "$ d" $INDIR/file.txt # remove "file.txt" from file.txt
 sed -i "1 i\--outdir=$OUTDIR :::" $INDIR/file.txt
 sed -i '1 i\fastqc {1}\n' $INDIR/file.txt 
-# sed -i "1 i\parallel -j $NUM_THREADS" $INDIR/file.txt
+sed -i "1 i\parallel -j $NUM_THREADS" $INDIR/file.txt
 
 cat $INDIR/file.txt
 
