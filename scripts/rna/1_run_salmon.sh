@@ -102,8 +102,7 @@ for dir in $INPUT_DIR/*/
                     fileParent=$(echo `basename $(dirname $R1)`)
 
                     # create folder for all Bowtie2 outputs per file by removing R1 and R2 (e.g. MTb8-8)             
-                    fName=$(echo ${fileName%"_val_*"}); #Remove suffix
-                    folderName=${OUTPUT_DIR}${fileParent}"/"${fName}
+                    outFolder=${OUTPUT_DIR}"/"${fileParent}
 
                     echo $folderName
 
@@ -114,14 +113,14 @@ for dir in $INPUT_DIR/*/
                     echo $R2
 
                     # output directory for BOWTIE2/sample_name
-                    mkdir -p ${folderName}
+                    mkdir -p ${outFolder}
                     
                     # write Bowtie2 command to a file, followed by .bam creation and sorting
                     echo "Adding ${fileName} files to run_salmon.txt script"
                     echo " "
                     
                     # QUANTIFICATION
-                    echo "salmon quant -i $trans_index -l ISF --gcBias -1 ${dir}${fileName} -2 $R2 -p $NUM_THREADS -o $folderName">> $COMMAND_SCRIPT
+                    echo "salmon quant -i $trans_index -l ISF --gcBias -1 $R1 -2 $R2 -p $NUM_THREADS -o $outFolder">> $COMMAND_SCRIPT
             done
        fi
     fi
