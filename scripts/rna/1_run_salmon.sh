@@ -108,7 +108,7 @@ for dir in $INPUT_DIR/*/
                     echo $folderName
 
                     # get 2nd read pair
-                    R2=${R1//"_R1_"/"_R2_"}
+                    R2=${R1/"_R1_"/"_R2_"}
                     R2=${R2//"_val_1"/"_val_2"}
 
                     echo $R2
