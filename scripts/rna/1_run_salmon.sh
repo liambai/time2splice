@@ -86,7 +86,7 @@ for dir in $INPUT_DIR/*/
         else
             echo "Initiating paired-end RNA-seq data processing.";
             # iterate through only the R1 replicates
-            for R1 in ${dir}/*_R1_*_val_*.fq*
+            for R1 in ${dir}*_R1_*_val_*.fq*
                 do
                     echo "Getting paired .fastq for $R1"
                     # iterate through each R1 to determine when to add 'wait' to script
@@ -108,7 +108,7 @@ for dir in $INPUT_DIR/*/
                     echo $folderName
 
                     # get 2nd read pair
-                    R2=${R1/"_R1_"/"_R2_"}
+                    R2=${R1//"_R1_"/"_R2_"}
                     R2=${R2//"_val_1"/"_val_2"}
 
                     echo $R2
