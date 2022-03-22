@@ -52,10 +52,9 @@ for dir in $INPUT_DIR
                 # generate the bowtie2 command for the next R1 and R2
                 fileName=$(echo `basename $file`) # get filename from .fq.gz
                 fileParent=$(echo `basename $(dirname $file)`)
-                fileParent2=$(echo `basename $(dirname $(dirname $file))`)
                 
                 # create folder for all Bowtie2 outputs per file by removing R1 and R2 (e.g. MTb8-8)             
-                folderName=${OUTPUT_DIR}'/'${fileParent2}'/'${fileParent}'/'
+                folderName=${OUTPUT_DIR}'/'${fileParent}
                 echo "folderName $folderName"
                 # output directory for BOWTIE2/sample_name
                 mkdir -p ${folderName}
