@@ -65,7 +65,7 @@ for dir in $INPUT_DIR/*/
                 echo " "
 
                 # QUANTIFICATION
-                echo "(${SUPPA_PATH}/multipleFieldSelection.py -i $file -k 1 -f 4 -o $folderName/iso_tmp.txt ) &">> $COMMAND_SCRIPT
+                echo "python3 (${SUPPA_PATH}/multipleFieldSelection.py -i $file -k 1 -f 4 -o $folderName/iso_tmp.txt ) &">> $COMMAND_SCRIPT
         done
     fi
 done
