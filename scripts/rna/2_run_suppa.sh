@@ -38,7 +38,7 @@ for dir in $INPUT_DIR/*/
     if [ -d ${dir} ] ; then  
         echo "Initiating suppa ID of alternative splicing events.";
         # iterate through only the R1 replicates
-        for file in ${dir}/*/quant.sf
+        for file in ${dir}*/quant.sf
             do
                 echo "Getting quantification information from $file"
                 # iterate through each R1 to determine when to add 'wait' to script
