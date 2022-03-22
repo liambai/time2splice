@@ -5,14 +5,14 @@
 # Purpose: Run Suppa for treatment and control samples.
 
 if [ $# -lt 4 ]; then
-	echo $0: "Usage: ./1_run_suppa.sh /PATH/TO/INPUT_DIR/ containing inputs /PATH/TO/OUTPUT_DIR/ (suggest placing in /results/suppa/) TRANSCRIPTOME_LOC PROCESSORS (per batch to run on cluster)"
+	echo $0: "Usage: ./1_run_suppa.sh /PATH/TO/INPUT_DIR/ containing inputs /PATH/TO/OUTPUT_DIR/ (suggest placing in /results/suppa/) suppa path (path to suppa) PROCESSORS (per batch to run on cluster)"
 	exit 1
 fi
 
 # Assign inputs to variable names
 INPUT_DIR=$1 # 
 OUTPUT_DIR=$2
-TRANS_LOC=$3
+SUPPA_PATH=$3
 PROCESSORS=$4
 
 # Make output directory if does not exist
@@ -65,7 +65,7 @@ for dir in $INPUT_DIR/*/
                 echo " "
 
                 # QUANTIFICATION
-                echo "(multipleFieldSelection.py -i $file -k 1 -f 4 -o $folderName/iso_tmp.txt ) &">> $COMMAND_SCRIPT
+                echo "(${SUPPA_PATH}/multipleFieldSelection.py -i $file -k 1 -f 4 -o $folderName/iso_tmp.txt ) &">> $COMMAND_SCRIPT
         done
     fi
 done
