@@ -22,4 +22,5 @@ RES_DIR=${OUTDIR}/time2splice/results
 # ./preprocess/4_run_Bowtie2.sh ${RES_DIR}/preprocess/trim_galore_fastqc ${RES_DIR}/preprocess/alignment 1 ${DATADIR}/reference/bowtie2_index/dmel_all_chromosome
 
 # ./rna/1_run_salmon.sh ${RES_DIR}/preprocess/trim_galore_fastqc ${RES_DIR}/analysis/salmon ${DATADIR}/reference ${DATADIR}/reference/dmel-all-chromosome-r6.44.fasta 4 1 1
-./rna/2_run_suppa.sh ${RES_DIR}/analysis/salmon ${RES_DIR}/analysis/suppa ${PATH_TO_SUPPA} 1
+# /rna/2_run_suppa.sh ${RES_DIR}/analysis/salmon ${RES_DIR}/analysis/suppa ${PATH_TO_SUPPA} 1
+python3 ./rna/3_suppa_merge.py ${RES_DIR}/analysis/suppa
